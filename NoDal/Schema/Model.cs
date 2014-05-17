@@ -1,10 +1,10 @@
-﻿namespace SqlBridge.CodeGen
+﻿namespace SqlBridge.Schema
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using CodeGen;
     using Microsoft.SqlServer.Dac.Model;
-    using Schema;
 
     public class Model : IDisposable
     {

@@ -3,25 +3,22 @@
     using System.Linq;
     using Microsoft.SqlServer.Dac.Model;
 
-    public class ColumnSchema : SchemaElement
+    public class SpParameter : SchemaElement
     {
-        public ColumnSchema(TSqlObject actual) : base(actual)
+        public SpParameter(TSqlObject actual) : base(actual)
         {
         }
-       
+
         public bool Nullable
         {
-            get
-            {
-                return Actual.GetProperty<bool>(Column.Nullable);
-            }
+            get { return false; }
         }
 
         public string SqlType
         {
             get
             {
-                return Actual.GetReferenced(Column.DataType)
+                return Actual.GetReferenced(Parameter.DataType)
                     .First().Name.Parts.Last();
             }
         }

@@ -66,7 +66,8 @@
   <ItemGroup>
     <Compile Include="CodeGen\BaseGenerator.cs" />
     <Compile Include="CodeGen\EntityGenerator.cs" />
-    <Compile Include="CodeGen\Model.cs" />
+    <Compile Include="Helpers\Converter.cs" />
+    <Compile Include="Schema\Model.cs" />
     <Compile Include="CodeGen\PrimaryKeySchema.cs" />
     <Compile Include="Helpers\Identifier.cs" />
     <Compile Include="Models\Generated\Database.cs">
@@ -80,6 +81,8 @@
     <Compile Include="Schema\ConstraintSchema.cs" />
     <Compile Include="Schema\SchemaElement.cs" />
     <Compile Include="Schema\SchemaReader.cs" />
+    <Compile Include="Schema\SpParameter.cs" />
+    <Compile Include="Schema\StoredProcedure.cs" />
     <Compile Include="Schema\TableSchema.cs" />
   </ItemGroup>
   <ItemGroup>
