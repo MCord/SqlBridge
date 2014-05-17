@@ -1,0 +1,7 @@
+﻿<#@ assembly name="E:\Dev\sandbox\NoDal\NoDal\bin\Debug\NoDal.dll" #>
+
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="NoDal.Schema" #>
+<#@ import namespace="NoDal" #>
+<# var model = new NoDal.Schema.SchemaReader(@"E:\Dev\sandbox\NoDal\NorthWind\bin\Debug\NorthWind.dacpac").GetModel();  #>

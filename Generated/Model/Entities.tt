@@ -1,0 +1,22 @@
+﻿<#@ include file="Core.ttinclude" #>
+namespace MyNamespace
+{
+	using System;
+	using PetaPoco;
+
+	<# 	foreach(var table in model.Tables)	{	#>
+
+	[TableName("[<#= table.Schema#>].[<#= table.Name#>]")]
+	<# if (table.HasPrimaryKey) {#>
+	[PrimaryKey("<#=Identifier.PascalStyle(table.PrimaryKey)#>")]
+	<# } #>
+	public class <#= Identifier.PascalStyle(table.Name)#>
+	{
+	<# 	foreach(var column in table.Columns)	{	#>
+	[Column("[<#=column.Name#>]")] public <#= column.Type#> <#= Identifier.PascalStyle(column.Name)#> {get;set;}
+	<# } #>
+}
+	
+
+	<# } #>
+}
