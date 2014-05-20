@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityGeneratorTests.cs" />
+    <Compile Include="Helpers\IdentifierTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaReaderTest.cs" />
     <Compile Include="Schema\StoredProcedureTest.cs" />
@@ -62,8 +63,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NoDal\SqlBridge.csproj">
-      <Project>{C5115A6A-782D-4647-BCF2-38407117AB9F}</Project>
+    <ProjectReference Include="..\SqlBridge\SqlBridge.csproj">
+      <Project>{c5115a6a-782d-4647-bcf2-38407117ab9f}</Project>
       <Name>SqlBridge</Name>
     </ProjectReference>
   </ItemGroup>

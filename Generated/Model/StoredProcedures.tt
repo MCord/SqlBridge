@@ -1,0 +1,24 @@
+﻿<#@ include file="Core.ttinclude" #>
+namespace MyNamespace
+{
+	using System;
+	using System.Collections.Generic;
+	using System.Data;
+	using PetaPoco;
+
+	public class DatabaseModule
+	{
+		private readonly Database db;
+	    public DatabaseModule(Database db)
+	    {
+	        this.db = db;
+	    }
+
+	<# 	foreach(var proc in model.StoredProcedures)	{	#>
+		public IEnumerable<IDataRecord> <#=Identifier.PascalStyle(proc.Name)#>(<#=string.Join(",",proc.Parameters.Select(p=>p.Type + " " + Identifier.CamelStyle(p.Name)))#>)
+		{
+			return db.Read("EXEC <#=proc.FullName#>  <#=Identifier.SqlArgList(proc.Parameters)#>"<#= proc.HasParameters ? "," : string.Empty#><#=string.Join(",",proc.Parameters.Select(p=>Identifier.CamelStyle(p.Name)))#>) ;
+		}
+	<# } #>
+	}
+}

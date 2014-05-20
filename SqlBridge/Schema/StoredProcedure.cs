@@ -14,5 +14,10 @@
         {
             get { return Actual.GetReferenced(Procedure.Parameters).Select(o => new SpParameter(o)); }
         }
+
+        public bool HasParameters
+        {
+            get { return Parameters.Any(); }
+        }
     }
 }

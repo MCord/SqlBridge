@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,24 +47,35 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Model\StoredProcedures.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoredProcedures.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PetaPoco.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Model\Config.ttinclude" />
     <None Include="Model\Core.ttinclude" />
     <None Include="Model\Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entities.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NoDal\SqlBridge.csproj">
-      <Project>{c5115a6a-782d-4647-bcf2-38407117ab9f}</Project>
-      <Name>SqlBridge</Name>
-    </ProjectReference>
+    <None Include="Model\StoredProcedures.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StoredProcedures.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlBridge\SqlBridge.csproj">
+      <Project>{c5115a6a-782d-4647-bcf2-38407117ab9f}</Project>
+      <Name>SqlBridge</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

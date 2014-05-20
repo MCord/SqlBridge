@@ -1,0 +1,2 @@
+1-Implement correct dacpac file resolution.
+2-SqlBridge should be loaded from target directly in non dev mode

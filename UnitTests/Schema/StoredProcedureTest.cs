@@ -17,7 +17,6 @@
 
             Assert.NotEmpty(sp.Parameters);
             var firstParam = sp.Parameters.First();
-
             Assert.Equal("@CustomerID", firstParam.Name);
             Assert.Equal("string", firstParam.Type);
         }

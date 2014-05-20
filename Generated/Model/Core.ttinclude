@@ -1,7 +1,13 @@
-﻿<#@ assembly name="E:\Dev\sandbox\NoDal\NoDal\bin\Debug\NoDal.dll" #>
+﻿<#@ template language="C#v4.5" hostspecific="True" #>
+<#@ include file="Config.ttinclude" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)SqlBridge\bin\$(Configuration)\SqlBridge.dll" #>
 
 <#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="NoDal.Schema" #>
-<#@ import namespace="NoDal" #>
-<# var model = new NoDal.Schema.SchemaReader(@"E:\Dev\sandbox\NoDal\NorthWind\bin\Debug\NorthWind.dacpac").GetModel();  #>
+<#@ import namespace="SqlBridge.Schema" #>
+<#@ import namespace="SqlBridge" #>
+<#
+
+	var model = new SqlBridge.Schema.SchemaReader(DacPacFileName).GetModel();  #>

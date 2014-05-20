@@ -1,6 +1,9 @@
 ﻿namespace SqlBridge
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text;
+    using Schema;
 
     public class Identifier
     {
@@ -33,6 +36,17 @@
             }
 
             return sb.ToString();
+        }
+
+        public static string CamelStyle(string name)
+        {
+            var pascalStyle = PascalStyle(name);
+            return char.ToLower(pascalStyle[0]) + pascalStyle.Substring(1);
+        }
+
+        public static string SqlArgList(IEnumerable<SpParameter> list )
+        {
+            return string.Join(",", list.Select((l, index) => "@" + index));
         }
     }
 }
