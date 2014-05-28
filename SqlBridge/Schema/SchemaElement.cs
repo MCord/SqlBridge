@@ -1,5 +1,6 @@
 ﻿namespace SqlBridge.Schema
 {
+    using System;
     using System.Linq;
     using Microsoft.SqlServer.Dac.Model;
 
@@ -9,6 +10,11 @@
 
         public SchemaElement(TSqlObject actual)
         {
+            if (actual == null)
+            {
+                throw new ArgumentException("Can't be null", "actual");
+            }
+
             Actual = actual;
         }
 

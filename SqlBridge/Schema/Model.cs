@@ -3,8 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using CodeGen;
     using Microsoft.SqlServer.Dac.Model;
+    using Models;
 
     public class Model : IDisposable
     {

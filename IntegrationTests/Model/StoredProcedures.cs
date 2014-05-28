@@ -9,38 +9,45 @@ namespace MyNamespace
 	public class DatabaseModule
 	{
 		private readonly Database db;
-	    public DatabaseModule(Database db)
+	    public DatabaseModule(Database db=null)
 	    {
-	        this.db = db;
+	        this.db = db ?? new Database("ConnectionString");
 	    }
 
-			public IEnumerable<IDataRecord> CustOrderHist(string customerId)
+	
+		public IEnumerable<T> CustOrderHist<T>(string customerId)
 		{
-			return db.Read("EXEC [dbo].[CustOrderHist]  @0",customerId) ;
+			return db.Fetch<T>(";EXEC [dbo].[CustOrderHist]  @0",customerId) ;
 		}
-			public IEnumerable<IDataRecord> CustOrdersDetail(int orderId)
+	
+		public IEnumerable<T> CustOrdersDetail<T>(int orderId)
 		{
-			return db.Read("EXEC [dbo].[CustOrdersDetail]  @0",orderId) ;
+			return db.Fetch<T>(";EXEC [dbo].[CustOrdersDetail]  @0",orderId) ;
 		}
-			public IEnumerable<IDataRecord> CustOrdersOrders(string customerId)
+	
+		public IEnumerable<T> CustOrdersOrders<T>(string customerId)
 		{
-			return db.Read("EXEC [dbo].[CustOrdersOrders]  @0",customerId) ;
+			return db.Fetch<T>(";EXEC [dbo].[CustOrdersOrders]  @0",customerId) ;
 		}
-			public IEnumerable<IDataRecord> EmployeeSalesByCountry(DateTime beginningDate,DateTime endingDate)
+	
+		public IEnumerable<T> EmployeeSalesByCountry<T>(DateTime beginningDate,DateTime endingDate)
 		{
-			return db.Read("EXEC [dbo].[Employee Sales by Country]  @0,@1",beginningDate,endingDate) ;
+			return db.Fetch<T>(";EXEC [dbo].[Employee Sales by Country]  @0,@1",beginningDate,endingDate) ;
 		}
-			public IEnumerable<IDataRecord> SalesByYear(DateTime beginningDate,DateTime endingDate)
+	
+		public IEnumerable<T> SalesByYear<T>(DateTime beginningDate,DateTime endingDate)
 		{
-			return db.Read("EXEC [dbo].[Sales by Year]  @0,@1",beginningDate,endingDate) ;
+			return db.Fetch<T>(";EXEC [dbo].[Sales by Year]  @0,@1",beginningDate,endingDate) ;
 		}
-			public IEnumerable<IDataRecord> SalesByCategory(string categoryName,string ordYear)
+	
+		public IEnumerable<T> SalesByCategory<T>(string categoryName,string ordYear)
 		{
-			return db.Read("EXEC [dbo].[SalesByCategory]  @0,@1",categoryName,ordYear) ;
+			return db.Fetch<T>(";EXEC [dbo].[SalesByCategory]  @0,@1",categoryName,ordYear) ;
 		}
-			public IEnumerable<IDataRecord> TenMostExpensiveProducts()
+	
+		public IEnumerable<T> TenMostExpensiveProducts<T>()
 		{
-			return db.Read("EXEC [dbo].[Ten Most Expensive Products]  ") ;
+			return db.Fetch<T>(";EXEC [dbo].[Ten Most Expensive Products]  ") ;
 		}
 		}
 }

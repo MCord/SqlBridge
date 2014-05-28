@@ -900,52 +900,6 @@ namespace PetaPoco
 				CloseSharedConnection();
 			}
 		}
-        public IEnumerable<IDataRecord> Read(string sql, params object[] args)
-        {
-            OpenSharedConnection();
-            try
-            {
-                using (var cmd = CreateCommand(_sharedConnection, sql, args))
-                {
-                    IDataReader r;
-                    try
-                    {
-                        r = cmd.ExecuteReader();
-                        OnExecutedCommand(cmd);
-                    }
-                    catch (Exception x)
-                    {
-                        if (OnException(x))
-                            throw;
-                        yield break;
-                    }
-                    using (r)
-                    {
-                        while (true)
-                        {
-                            try
-                            {
-                                if (!r.Read())
-                                    yield break;
-                            }
-                            catch (Exception x)
-                            {
-                                if (OnException(x))
-                                    throw;
-                                yield break;
-                            }
-
-                            yield return r;
-                        }
-                    }
-                }
-            }
-            finally
-            {
-                CloseSharedConnection();
-            }
-        }
-
 		/// <summary>
 		/// Runs an SQL query, returning the results as an IEnumerable collection
 		/// </summary>

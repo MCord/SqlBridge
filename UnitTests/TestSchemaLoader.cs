@@ -1,15 +1,17 @@
 ﻿namespace UnitTests
 {
+    using System.Linq;
     using Microsoft.SqlServer.Dac.Model;
 
     internal class TestSchemaLoader
     {
         private static readonly TSqlModel Model = new TSqlModel("NorthWind.dacpac");
 
-        public static TSqlObject GetDacPacObject(string id, ModelTypeClass typ)
+        public static TSqlObject GetDacPacObject(string id)
         {
-            var obj = Model.GetObject(typ, new ObjectIdentifier(id.Split('.')),DacQueryScopes.All);
-            return obj;
+            var dacPacObject = Model.GetObjects(DacQueryScopes.UserDefined)
+                .First(a => a.Name.Parts.Any() && a.Name.Parts.Last().Equals(id));
+            return dacPacObject;
         }
     }
 }

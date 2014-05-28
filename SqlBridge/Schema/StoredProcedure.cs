@@ -19,5 +19,28 @@
         {
             get { return Parameters.Any(); }
         }
+
+        public IEnumerable<ColumnSchema> InferredResultColumns
+        {
+            get
+            {
+                var duplicate = new List<string>();
+                foreach (var result in Actual .GetReferenced().Where(r => r.ObjectType.Name == "Column").Select(sqlObject => new ColumnSchema(sqlObject)))
+                {
+                    if (duplicate.Contains(result.Name))
+                    {
+                        continue;
+                    }
+
+                    duplicate.Add(result.Name);
+                    yield return result;
+                }
+            }
+        }
+
+        public bool ReturnsVoid
+        {
+            get { return !InferredResultColumns.Any(); }
+        }
     }
 }

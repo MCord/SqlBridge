@@ -1,4 +1,4 @@
-﻿namespace SqlBridge.CodeGen
+﻿namespace SqlBridge.Models
 {
     using System.Linq;
     using Microsoft.SqlServer.Dac.Model;

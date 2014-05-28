@@ -9,15 +9,16 @@ namespace MyNamespace
 	public class DatabaseModule
 	{
 		private readonly Database db;
-	    public DatabaseModule(Database db)
+	    public DatabaseModule(Database db=null)
 	    {
-	        this.db = db;
+	        this.db = db ?? new Database("ConnectionString");
 	    }
 
 	<# 	foreach(var proc in model.StoredProcedures)	{	#>
-		public IEnumerable<IDataRecord> <#=Identifier.PascalStyle(proc.Name)#>(<#=string.Join(",",proc.Parameters.Select(p=>p.Type + " " + Identifier.CamelStyle(p.Name)))#>)
+
+		public IEnumerable<T> <#=Identifier.PascalStyle(proc.Name)#><T>(<#=string.Join(",",proc.Parameters.Select(p=>p.Type + " " + Identifier.CamelStyle(p.Name)))#>)
 		{
-			return db.Read("EXEC <#=proc.FullName#>  <#=Identifier.SqlArgList(proc.Parameters)#>"<#= proc.HasParameters ? "," : string.Empty#><#=string.Join(",",proc.Parameters.Select(p=>Identifier.CamelStyle(p.Name)))#>) ;
+			return db.Fetch<T>(";EXEC <#=proc.FullName#>  <#=Identifier.SqlArgList(proc.Parameters)#>"<#= proc.HasParameters ? "," : string.Empty#><#=string.Join(",",proc.Parameters.Select(p=>Identifier.CamelStyle(p.Name)))#>) ;
 		}
 	<# } #>
 	}
